@@ -18,12 +18,12 @@ public class DATAALCHEMY {
     public static void main(String[] args) {
         
         //Data loading
-        String csv_path = "C:\\Users\\Shaurah Sasha\\Downloads\\housepricing.csv";
+        String file_path = "C:\\Users\\Shaurah Sasha\\Downloads\\housepricing.csv";
         String line = "";
         List<String[]> house_pricing_data = new ArrayList<>();
         
         try {
-            BufferedReader buffered_reader = new BufferedReader(new FileReader(csv_path));
+            BufferedReader buffered_reader = new BufferedReader(new FileReader(file_path));
             
             while((line = buffered_reader.readLine()) != null) {
                 String[] columns = line.split(",");
@@ -36,13 +36,31 @@ public class DATAALCHEMY {
             e.printStackTrace();
         }
         
-        for(String[] rows: house_pricing_data) {
-            for(String columns: rows) {
-                System.out.print(columns + " ");
-            }
-            System.out.println();
-        }
-        
         //Data Exploration
+        System.out.println("House Pricing Dataset\n");
+        int rows_total, cells_total, missing_values;
+        rows_total = cells_total = missing_values = 0;
+        
+        for(String[] rows: house_pricing_data) {
+            
+            for(String columns: rows) {
+                
+                if (columns.equals("")) {
+                    missing_values++;
+                }  
+                
+                if (rows_total <= 25) {
+                    System.out.printf("%-15s ", columns);     
+                } 
+                cells_total++;
+            }
+            
+            if (rows_total <= 25) {
+                    System.out.println();    
+            }
+            rows_total++;
+        }
+        System.out.println("\nShowing 25 out of " + rows_total + " rows.");
+        System.out.println("This dataset has " + (cells_total/rows_total) + " columns and " + missing_values + " missing values.");
     }     
 }
