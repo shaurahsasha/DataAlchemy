@@ -97,6 +97,21 @@ public class DATAALCHEMY {
             e.printStackTrace();
         }
 
+        //Data Cleaning Simplified
+        System.out.println("\n\nHouse Pricing Dataset After Cleaning\n");
+        
+        List<String[]> house_pricing_cleaned = new ArrayList<>(house_pricing_data);     //Creating a copy of the original dataset 
+
+        for(String[] rows: house_pricing_cleaned) {                                     //Looping through the new dataset to impute with 0
+            for(String columns: rows) {  
+                if (columns.equals("")) {
+                    columns = "0";
+                }
+                System.out.printf("%-15s ", columns); 
+            }
+            System.out.println();
+        }
+
         
     }     
 }
