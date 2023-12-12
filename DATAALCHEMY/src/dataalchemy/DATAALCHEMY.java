@@ -63,40 +63,7 @@ public class DATAALCHEMY {
         System.out.println("\nShowing 25 out of " + rows_total + " rows.");
         System.out.println("This dataset has " + (cells_total/rows_total) + " columns and " + missing_values + " missing values.");
 
-        //Data cleaning
         
-        System.out.println("\n\nHouse Pricing Dataset After Cleaning\n");
-        int cleaned_rows = 0; 
-        
-        try {
-            BufferedReader buffered_reader = new BufferedReader(new FileReader(file_path));
-            
-            while((line = buffered_reader.readLine()) != null) {
-                String[] columns = line.split(",");
-                
-                // Data cleaning: Replace empty strings with "0"
-                for (int i = 0; i < columns.length; i++) {
-                    if (columns[i].equals("")) {
-                        columns[i] = "0";
-                    }
-                }
-                
-                house_pricing_data.add(columns); 
-                cleaned_rows++;
-
-                for (String column : columns) {
-                    System.out.printf("%-15s ", column);
-                }
-                System.out.println();
-
-            }  
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         //Data Cleaning [Checking Duplicated Rows] 
         Set house_pricing_set = new HashSet<>(house_pricing_data);
         if(house_pricing_set.size() == house_pricing_data.size()) {
