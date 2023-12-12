@@ -97,7 +97,15 @@ public class DATAALCHEMY {
             e.printStackTrace();
         }
 
-        //Data Cleaning Simplified
+        //Data Cleaning [Checking Duplicated Rows] 
+        Set house_pricing_set = new HashSet<>(house_pricing_data);
+        if(house_pricing_set.size() == house_pricing_data.size()) {
+            System.out.println("There are no duplicated rows in this dataset.");
+        } else {
+            System.out.println("There are duplicated rows in this dataset.");
+        }
+
+        //Data Cleaning [Imputing Zero] Simplified
         System.out.println("\n\nHouse Pricing Dataset After Cleaning\n");
         
         List<String[]> house_pricing_cleaned = new ArrayList<>(house_pricing_data);     //Creating a copy of the original dataset 
@@ -111,7 +119,5 @@ public class DATAALCHEMY {
             }
             System.out.println();
         }
-
-        
     }     
 }
