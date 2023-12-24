@@ -86,6 +86,35 @@ public class DATAALCHEMY {
             }
             System.out.println();
         }
+
+        //save&export cleaned data:
+        String cleanedFilePath = "cleanedHousepricing.csv";
+        
+        try {
+            PrintWriter out = new PrintWriter(new FileOutputStream(cleanedFilePath));
+            
+            for(String[] rows: house_pricing_cleaned) {     
+                StringBuilder rowBuilder = new StringBuilder();
+
+                for (String column : rows) {
+                    if (column.equals("")) {
+                        column = "0"; // Impute empty values with "0"
+                    }
+                    rowBuilder.append(column).append(",");
+                }
+
+                if (rowBuilder.length() > 0) {
+                    // Remove the last comma before writing the row
+                    out.println(rowBuilder.substring(0, rowBuilder.length() - 1));
+                }
+            }    
+                
+            out.close();
+            System.out.println("Cleaned data has been saved to:" +cleanedFilePath);
+        } catch (IOException e) {
+            System.out.println("Problem with file output");
+        }
+
     }   
 
 
