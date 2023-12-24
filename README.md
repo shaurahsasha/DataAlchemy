@@ -1,8 +1,8 @@
 # DataAlchemy
 
-WIX1002 Fundamentalas of Programming
+WIX1002 Fundamentals of Programming
 
-Semester 2023/2024
+Semester I 2023/2024
 
 Group Assignment Topic 5
 
