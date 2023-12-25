@@ -1,0 +1,100 @@
+import javax.swing.*;
+import java.awt.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+class DataVisualizationAndSplitting {
+
+    public static void main(String[] args) {
+        
+        List<Double> data = readDataFromCSV(System.getProperty("user.home") + "/Desktop/housepricing.csv");
+
+        
+        visualizeData(data);
+
+        
+        double splitRatio = 0.7;
+        List<Double> trainingSet = splitData(data, splitRatio);
+
+        
+        System.out.println("Training Set: " + trainingSet);
+        System.out.println("Testing Set: " + data);
+    }
+
+    private static List<Double> readDataFromCSV(String filePath) {
+        List<Double> data = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            
+            br.readLine();
+
+            
+            while ((line = br.readLine()) != null) {
+                
+                String[] values = line.split(",");
+                
+                double value = Double.parseDouble(values[0]);
+               
+                data.add(value);
+            }
+        } catch (IOException | NumberFormatException e) {
+           
+            e.printStackTrace();
+        }
+
+        return data;
+    }
+
+    private static void visualizeData(List<Double> data) {
+        
+        SwingUtilities.invokeLater(() -> {
+            
+            JFrame frame = new JFrame("Data Visualization");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setSize(400, 300);
+
+           
+            JPanel panel = new JPanel() {
+                @Override
+                protected void paintComponent(Graphics g) {
+                    super.paintComponent(g);
+                    Graphics2D g2d = (Graphics2D) g;
+
+                   
+                    int barWidth = getWidth() / data.size();
+                    int maxValue = Collections.max(data).intValue();
+
+                    for (int i = 0; i < data.size(); i++) {
+                        int barHeight = (int) ((data.get(i) / maxValue) * getHeight());
+                        int x = i * barWidth;
+                        int y = getHeight() - barHeight;
+
+                      
+                        g2d.setColor(Color.BLUE);
+                        g2d.fillRect(x, y, barWidth, barHeight);
+
+
+                        g2d.setColor(Color.BLACK);
+                        g2d.drawRect(x, y, barWidth, barHeight);
+                    }
+                }
+            };
+
+            
+            frame.add(panel);
+            frame.setVisible(true);
+        });
+    }
+
+    private static List<Double> splitData(List<Double> data, double splitRatio) {
+        
+        int splitIndex = (int) (data.size() * splitRatio);
+        
+        return new ArrayList<>(data.subList(0, splitIndex));
+    }
+}
