@@ -48,7 +48,12 @@ public class DataAlchemy {
         DataTransformation d = new DataTransformation(c.getCleanedDataset());
         d.getTransformedDataset(10);
         
-        
+        /**
+         * Data Splitting
+         */
+        System.out.println("6.  Data Splitting (1 mark)\n");
+        DataSplitting e = new DataSplitting(d.getTransformedDataset());
+        e.getShuffledDataset(10);
 
     }     
 }
