@@ -49,11 +49,46 @@ public class DataAlchemy {
         d.getTransformedDataset(10);
         
         /**
-         * Data Splitting
+         * Data Visualization
          */
-        System.out.println("6.  Data Splitting (1 mark)\n");
-        DataSplitting e = new DataSplitting(d.getTransformedDataset());
-        e.getShuffledDataset(10);
+        System.out.println("5.  Data Visualisation (1 mark)\n");
+        
+        /**
+         * Data Splitting, Save and Export Preprocessed Data
+         */
+        System.out.println("6.  Data Splitting (1 mark)");
+        System.out.println("7.  Save and Export Pre-processed Data (1 mark)\n");
+        DataSplitting f = new DataSplitting(d.getTransformedDataset());
+        f.getShuffledDataset(10);
+                
+        /**
+         * User Interface
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException e) {
+            java.util.logging.Logger.getLogger(UserInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, e);
+        } catch (InstantiationException e) {
+            java.util.logging.Logger.getLogger(UserInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, e);
+        } catch (IllegalAccessException e) {
+            java.util.logging.Logger.getLogger(UserInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, e);
+        } catch (javax.swing.UnsupportedLookAndFeelException e) {
+            java.util.logging.Logger.getLogger(UserInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, e);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new UserInterface().setVisible(true);
+            }
+        });
 
     }     
 }
