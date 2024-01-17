@@ -33,8 +33,9 @@ public class DataTransformation {
         normalise(4);           //stories
         normalise(10);          //parking      
     }
-    
-    private void oneHotEncoding() {
+
+    //Xinle
+    private void oneHotEncoding() { 
         
         System.out.println("-- Transforming the data ...");
         
@@ -176,8 +177,9 @@ public class DataTransformation {
             e.printStackTrace();
         }
     }
-    
-    private void normalise(int index) {
+
+    //Rock
+    private void normalise(int index) {  
         
         DataLoading dl = new DataLoading("transformedhousepricing.csv", false);
         List<String[]> arrayList = dl.getLoadedDataset();
@@ -221,7 +223,8 @@ public class DataTransformation {
             e.printStackTrace();
         }
     }
-    
+
+    //Rock
     private void standardise(int index) {
         
         DataLoading dl = new DataLoading("transformedhousepricing.csv", false);
